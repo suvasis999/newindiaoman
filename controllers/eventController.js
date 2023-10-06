@@ -43,23 +43,19 @@ const addAppuser = async (req, res, next) => {
         const getRecord = await eventData.getAppUserByEmail(data.emailID)
         if(getRecord.length>0){
             res.status(200).json({
-                status: 'success',
-                 data:{
-                    data:"User Exists"
-             }
+                status: 'duplicate',
+                message:'User Exists',
+                data:"User Exists"
             });
         }
         else{
             try {
                 const data = req.body;
                 const insert = await eventData.creatAppuser(data);
-                console.log(data);
                 res.status(200).json({
                     status: 'success',
-                     data:{
-                        data:insert,
-                        sql:data.emailID
-                 }
+                    message:'Successfully Registered',
+                    data:insert
                 });
         
                 var transporter = nodemailer.createTransport({
@@ -82,17 +78,26 @@ const addAppuser = async (req, res, next) => {
                       console.log("email error",error);
                     } else {
                       console.log('Email sent: ' + info.response);
+                     
                     }
                   });
               
             } catch (error) {
-                res.status(400).send(error.message);
+                res.status(400).json({
+                    status: 'failed',
+                    message:'failed',
+                   data:error.message
+                });
             }
         }
         
     }
     catch (error){
-        res.status(400).send(error.message);
+        res.status(400).json({
+            status: 'failed',
+            message:'failed',
+            data:error.message
+        });
     }
    
 }
@@ -105,20 +110,25 @@ const getUserLogin = async (req, res, next) => {
         if(getRecord.length>0){
             res.status(200).json({
                 status: 'success',
-                 data:{
-                    data:getRecord
-             }
+                message:'Sucessfully Login',
+                 data:getRecord
+             
             });
         }
         else{
             res.status(200).json({
                 status: 'failed',
-                 data:"User not exists or Invalid Credential"
+                message:'User not exists or Invalid Credential',
+                data:"User not exists or Invalid Credential"
             });
         }
     }
     catch (error){
-        res.status(400).send(error.message);
+        res.status(400).json({
+            status: 'failed',
+            message:'failed',
+            data:error.message
+        });
     }
 }
 
@@ -129,23 +139,25 @@ const getUserVerified = async (req, res, next) => {
        if(userlist.length>0){
             res.status(200).json({
                 status: 'success',
-                data:{
-                    data:userlist
-                }
-            });
+                message:'Sucessfully Verified',
+                data:userlist
+              });
         }
         else{
             res.status(200).json({
-                status: 'fail',
-                results: userlist.length,
-                data:{
-                    data:"User not exists"
-                }
+                status: 'failed',
+                message:'User not exists',
+                data:"User not exists"
+                
             });
         }
        
     } catch (error) {
-        res.status(400).send(error.message);
+        res.status(400).json({
+            status: 'failed',
+            message:'failed',
+            data:error.message
+        });
     }
 }
 
@@ -154,12 +166,16 @@ const getVechleMake = async (req, res, next) => {
         const makeList = await eventData.getVehicleMake();
         res.status(200).json({
             status: 'success',
-            data:{
-                data:makeList
-            }
+            message:'Sucessfully Fetched',
+            data:makeList
+            
         });
     } catch (error) {
-        res.status(400).send(error.message);
+        res.status(400).json({
+            status: 'failed',
+            message:'failed',
+            data:error.message
+        });
     }
 }
 
@@ -171,22 +187,26 @@ const getVechleModel = async (req, res, next) => {
         if(modelList.length>0){
             res.status(200).json({
                 status: 'success',
-                data:{
-                    data:modelList
-                }
+                message:'Sucessfully Fetched',
+                data:modelList,
+                
             });
         }
         else{
             res.status(200).json({
-                status: 'fail',
-                data:{
-                    data:"Model not available"
-                }
+                status: 'failed',
+                message:'Model not available',
+                data:"Model not available"
+                
             });
         }
        
     } catch (error) {
-        res.status(400).send(error.message);
+        res.status(400).json({
+            status: 'failed',
+            message:'failed',
+            data:error.message
+        });
     }
 }
 
@@ -195,12 +215,16 @@ const getVechleType = async (req, res, next) => {
         const typeList = await eventData.getVehicleType();
         res.status(200).json({
             status: 'success',
-            data:{
-                data:typeList
-            }
+            message:'Successfully fetched',
+             data:typeList
+            
         });
     } catch (error) {
-        res.status(400).send(error.message);
+        res.status(400).json({
+            status: 'failed',
+            message:'failed',
+            data:error.message
+        });
     }
 }
 
