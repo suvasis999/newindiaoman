@@ -149,6 +149,61 @@ const getUserVerified = async (req, res, next) => {
     }
 }
 
+const getVechleMake = async (req, res, next) => {
+    try {
+        const makeList = await eventData.getVehicleMake();
+        res.status(200).json({
+            status: 'success',
+            data:{
+                data:makeList
+            }
+        });
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
+const getVechleModel = async (req, res, next) => {
+    try {
+        const data = req.body;
+        const modelList = await eventData.getVehicleModel(data);
+       // console.log(modelList);
+        if(modelList.length>0){
+            res.status(200).json({
+                status: 'success',
+                data:{
+                    data:modelList
+                }
+            });
+        }
+        else{
+            res.status(200).json({
+                status: 'fail',
+                data:{
+                    data:"Model not available"
+                }
+            });
+        }
+       
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
+const getVechleType = async (req, res, next) => {
+    try {
+        const typeList = await eventData.getVehicleType();
+        res.status(200).json({
+            status: 'success',
+            data:{
+                data:typeList
+            }
+        });
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
 const getEvent = async (req, res, next) => {
     try {
         const eventId = req.params.id;
@@ -200,5 +255,8 @@ module.exports = {
     getDemodata,
     addAppuser,
     getUserLogin,
-    getUserVerified
+    getUserVerified,
+    getVechleMake,
+    getVechleModel,
+    getVechleType
 }

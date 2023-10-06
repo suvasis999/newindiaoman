@@ -16,6 +16,9 @@ router.get('/demoData', eventControll.getDemodata);
 router.post('/appUser', eventControll.addAppuser);
 router.post('/appUserLogin', eventControll.getUserLogin);
 router.post('/appUserVerified', eventControll.getUserVerified);
+router.get('/getVechleMake', eventControll.getVechleMake);
+router.post('/getVechleModel', eventControll.getVechleModel);
+router.get('/getVechleType', eventControll.getVechleType);
 module.exports = {
     routes: router
 }

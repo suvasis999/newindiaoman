@@ -1,0 +1,1 @@
+ SELECT Code,Description from [newIndiaOman_dbapp].[dbo].[MtrType]

@@ -154,6 +154,43 @@ const postUserVerified = async(appUser) => {
    }
 }
 
+const getVehicleMake = async () => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('events');
+        const vehicleMakeList = await pool.request().query(sqlQueries.vehicleMake);
+        return vehicleMakeList.recordset;
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const getVehicleModel = async(appUser) => {
+    console.log(appUser);
+    try {
+       let pool = await sql.connect(config.sql);
+       const sqlQueries = await utils.loadSqlQueries('events');
+       const chkRecord = await pool.request()
+       .input('VT_code', sql.NVarChar(100), appUser.VT_code)
+                           .query(sqlQueries.vehicleModel);
+       
+       return chkRecord.recordset;
+   } catch (error) {
+       return error.message;
+   }
+}
+
+const getVehicleType = async () => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('events');
+        const vehicleTypeList = await pool.request().query(sqlQueries.vehicleType);
+        return vehicleTypeList.recordset;
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 
 
 module.exports = {
@@ -165,5 +202,8 @@ module.exports = {
     getAppUserByEmail,
     creatAppuser,
     postUserLogin,
-    postUserVerified
+    postUserVerified,
+    getVehicleMake,
+    getVehicleModel,
+    getVehicleType
 }
