@@ -58,9 +58,57 @@ const addAppuser = async (req, res, next) => {
                     data:insert
                 });
 
+                const transporter = nodemailer.createTransport({
+                    port: 465,
+                    host: "smtp.gmail.com",
+                    auth: {
+                        user: 'webndro@gmail.com',
+                        pass: 'qgwg jrqo vrnn tusf'
+                    },
+                    secure: true,
+                });
                 
+                await new Promise((resolve, reject) => {
+                    // verify connection configuration
+                    transporter.verify(function (error, success) {
+                        if (error) {
+                            console.log(error);
+                            reject(error);
+                        } else {
+                            console.log("Server is ready to take our messages");
+                            resolve(success);
+                        }
+                    });
+                });
+                
+                const mailData = {
+                    from: {
+                        name: "webndro@gmail.com",
+                        address: "myEmail@gmail.com",
+                    },
+                    replyTo:  data.emailID,
+                    to:  data.emailID,
+                    subject: "Account Validation OTP Sent",
+                    text: "Account Validation OTP is "+data.emailOtp+"",
+                    html: "Account Validation OTP is "+data.emailOtp+"",
+                };
+                
+                await new Promise((resolve, reject) => {
+                    // send mail
+                    transporter.sendMail(mailData, (err, info) => {
+                        if (err) {
+                            console.error(err);
+                            reject(err);
+                        } else {
+                            console.log(info);
+                            resolve(info);
+                        }
+                    });
+                });
+                
+              //  res.status(200).json({ status: "OK" });
         
-                var transporter = nodemailer.createTransport({
+               /* var transporter = nodemailer.createTransport({
                     service: 'gmail',
                     auth: {
                       user: 'webndro@gmail.com',
@@ -82,7 +130,7 @@ const addAppuser = async (req, res, next) => {
                       console.log('Email sent: ' + info.response);
                      
                     }
-                  });
+                  });*/
               
             } catch (error) {
                 res.status(400).json({
