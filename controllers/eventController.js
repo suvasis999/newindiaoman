@@ -58,7 +58,7 @@ const addAppuser = async (req, res, next) => {
                     data:insert
                 });
 
-                const transporter = nodemailer.createTransport({
+               /* const transporter = nodemailer.createTransport({
                     port: 465,
                     host: "smtp.gmail.com",
                     auth: {
@@ -104,7 +104,7 @@ const addAppuser = async (req, res, next) => {
                             resolve(info);
                         }
                     });
-                });
+                });*/
                 
               //  res.status(200).json({ status: "OK" });
         
