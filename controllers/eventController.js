@@ -57,6 +57,8 @@ const addAppuser = async (req, res, next) => {
                     message:'Successfully Registered',
                     data:insert
                 });
+
+                
         
                 var transporter = nodemailer.createTransport({
                     service: 'gmail',
