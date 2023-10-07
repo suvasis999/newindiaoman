@@ -28,4 +28,7 @@ VALUES
         @isVerified
     )
 
-SELECT SCOPE_IDENTITY() AS appUserID
+
+SELECT *
+  FROM [dbo].[tbl_appUser]
+  WHERE [appUserID]=appUserID
