@@ -192,6 +192,100 @@ const getVehicleType = async () => {
 }
 
 
+/*const creatVehiclePost = async (appUser) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('events');
+        const insertAppUser = await pool.request()
+                            .input('Quote_NO', sql.VarChar(14), appUser.Quote_NO)
+                            .input('BIRTH_DT', sql.DateTime, appUser.BIRTH_DT)
+                            .input('VEHUSG_CODE', sql.Int, appUser.VEHUSG_CODE)
+                            .input('VEHUSG_NAME', sql.VarChar(15), appUser.VEHUSG_NAME)
+                            .input('Mortage', sql.VarChar(250), appUser.Mortage)
+                            .input('CRNO', sql.Char(20), appUser.CRNO)
+                            .input('LICENCE_DT', sql.DateTime, appUser.LICENCE_DT)
+                            .input('LICENCE_NO', sql.Char(10), appUser.LICENCE_NO)
+                            .input('PPType', sql.Char(1), appUser.PPType)
+                            .input('PrevInsurer', sql.VarChar(250), appUser.PrevInsurer)
+                            .input('PrevExpDt', sql.DateTime, appUser.PrevExpDt)
+
+                            .input('REGNO', sql.Char(20), appUser.REGNO)
+                            .input('CHASIS', sql.Char(20), appUser.CHASIS)
+                            .input('ENGINENO', sql.Char(20), appUser.ENGINENO)
+                            .input('HPCC', sql.Char(20), appUser.HPCC)
+                            .input('VM_code', sql.Int, appUser.VM_code)
+                            .input('VM_MAKE', sql.VarChar(50), appUser.VM_MAKE)
+                            .input('BODY_CODE', sql.Char(10), appUser.BODY_CODE)
+                            .input('BODYTY', sql.VarChar(50), appUser.BODYTY)
+                            .input('COLOUR', sql.Char(20), appUser.COLOUR)
+                            .input('PLMANUF', sql.Char(20), appUser.PLMANUF)
+
+                            .input('EMPWT', sql.Numeric(18,3), appUser.EMPWT)
+                            .input('LOADWT', sql.Numeric(18,3), appUser.LOADWT)
+                            .input('TOTWT', sql.Numeric(18,3), appUser.TOTWT)
+                            .input('MODEL', sql.Int, appUser.MODEL)
+                            .input('SEATS', sql.Int, appUser.SEATS)
+                            .input('SeatingCapacity', sql.Int, appUser.SeatingCapacity)
+                            .input('ROP_NO', sql.Numeric(10,0), appUser.ROP_NO)
+                            .input('Cov_Type', sql.VarChar(4), appUser.Cov_Type)
+                            .input('UAEEXT', sql.Char(1), appUser.UAEEXT)
+                            .input('OrangeCNO', sql.Char(10), appUser.OrangeCNO)
+
+                            .input('STFEXS', sql.Numeric(18,3), appUser.STFEXS)
+                            .input('TOTEXS1', sql.Numeric(18,3), appUser.TOTEXS1)
+                            .input('TOTEXS2', sql.Numeric(18,3), appUser.TOTEXS2)
+                            .input('VEH_VAL', sql.Numeric(18,3), appUser.VEH_VAL)
+                            .input('ODPREM', sql.Numeric(18,3), appUser.ODPREM)
+                            .input('TPPREM', sql.Numeric(18,3), appUser.TPPREM)
+                            .input('RATEPREM', sql.Numeric(18,3), appUser.RATEPREM)
+                            .input('TOOLPRM', sql.Numeric(18,3), appUser.TOOLPRM)
+                            .input('ADLPAS', sql.Numeric(18,3), appUser.ADLPAS)
+                            .input('LOADAMT', sql.Numeric(18,3), appUser.LOADAMT)
+
+
+                            .input('UAEPRM', sql.Numeric(18,3), appUser.UAEPRM)
+                            .input('POLFEES', sql.Numeric(18,3), appUser.POLFEES)
+                            .input('MEDFEES', sql.Numeric(18,3), appUser.MEDFEES)
+                            .input('OrangeCfees', sql.Numeric(18,3), appUser.OrangeCfees)
+                            .input('TOTPREM', sql.Numeric(18,3), appUser.TOTPREM)
+                            .input('GROSSPREM', sql.Numeric(18,3), appUser.GROSSPREM)
+                            .input('GovtTax', sql.Numeric(18,3), appUser.GovtTax)
+                            .input('Injfund_Tax', sql.Numeric(18,3), appUser.Injfund_Tax)
+                            .input('NETPREM', sql.Numeric(18,3), appUser.NETPREM)
+                            .input('IsCustTransfer', sql.Int, appUser.IsCustTransfer)
+
+                            .input('IsRejected', sql.Int, appUser.IsRejected)
+                            .input('TRTPRM', sql.Numeric(18,3), appUser.TRTPRM)
+                            .input('AddlBenefits', sql.Numeric(18,3), appUser.AddlBenefits)
+                            .input('IsVehRate', sql.Int, appUser.IsVehRate)
+                            .input('IsSARate', sql.Int, appUser.IsSARate)
+                            .input('IsSplAproval', sql.Int, appUser.IsSplAproval)
+                            .input('c_rate', sql.Float, appUser.c_rate)
+                            .input('FirstREG_DT', sql.DateTime, appUser.FirstREG_DT)
+                            .input('IsFirstReg', sql.Int, appUser.IsFirstReg)
+                            .input('IsExportVehicle', sql.Int, appUser.IsExportVehicle)
+                            .input('GroupCode', sql.VarChar(15), appUser.GroupCode)
+                            .input('tariffid', sql.Int), appUser.tariffid)
+                    .input('IsBreakIn', sql.Int, appUser.IsBreakIn)
+                            .input('off_details', sql.VarChar(50), appUser.off_details)
+                            .input('off_Points', sql.Int, appUser.off_Points)
+                            .input('vat', sql.Numeric(18,3), appUser.vat)
+                            .input('vatper', sql.Numeric(18,3), appUser.vatper)
+                            .input('ERA', sql.Char(1), appUser.ERA)
+                            .input('eraamt', sql.Numeric(18,3), appUser.eraamt)
+                            .input('eracardno', sql.Char(10), appUser.eracardno)
+                            
+                            .query(sqlQueries.createVEhicleQuote);   
+                            
+                           
+
+        return insertAppUser.recordset;
+    } catch (error) {
+        return error.message;
+    }
+}
+*/
+
 
 module.exports = {
     getEvents,

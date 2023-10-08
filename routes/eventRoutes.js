@@ -19,6 +19,7 @@ router.post('/appUserVerified', eventControll.getUserVerified);
 router.get('/getVechleMake', eventControll.getVechleMake);
 router.post('/getVechleModel', eventControll.getVechleModel);
 router.get('/getVechleType', eventControll.getVechleType);
+
 module.exports = {
     routes: router
 }

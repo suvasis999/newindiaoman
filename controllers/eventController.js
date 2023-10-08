@@ -62,8 +62,7 @@ const addAppuser = async (req, res, next) => {
                     port: 465,
                     host: "smtp.gmail.com",
                     auth: {
-                        user: 'webndro@gmail.com',
-                        pass: 'qgwg jrqo vrnn tusf'
+                       
                     },
                     secure: true,
                 });
@@ -150,6 +149,25 @@ const addAppuser = async (req, res, next) => {
         });
     }
    
+}
+
+const postVehicleQuote=async(req, res, next)=>{
+    try{
+        const data = req.body;
+        const insert = await eventData.creatVehiclePost(data);
+                res.status(200).json({
+                    status: 'success',
+                    message:'Successfully Posted',
+                    data:insert
+                });
+    }
+    catch (error){
+        res.status(400).json({
+            status: 'failed',
+            message:'failed',
+            data:error.message
+        });
+    }
 }
 
 const getUserLogin = async (req, res, next) => {

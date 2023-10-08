@@ -29,6 +29,4 @@ VALUES
     )
 
 
-SELECT *
-  FROM [dbo].[tbl_appUser]
-  WHERE [appUserID]=appUserID
+SELECT * FROM [dbo].[tbl_appUser] WHERE appUserID = SCOPE_IDENTITY();
