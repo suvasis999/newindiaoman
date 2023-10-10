@@ -283,8 +283,8 @@ const getVehicleType = async () => {
     } catch (error) {
         return error.message;
     }
-}
-*/
+}*/
+
 
 
 module.exports = {
@@ -299,5 +299,6 @@ module.exports = {
     postUserVerified,
     getVehicleMake,
     getVehicleModel,
-    getVehicleType
+    getVehicleType,
+   // creatVehiclePost
 }
