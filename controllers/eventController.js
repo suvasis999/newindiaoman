@@ -170,6 +170,26 @@ const postVehicleQuote=async(req, res, next)=>{
     }
 }
 
+const creatMapCustID=async(req, res, next)=>{
+    try{
+        const data = req.body;
+        const insert = await eventData.creatMapCustID(data);
+         res.status(200).json({
+                    status: 'success',
+                    message:'Successfully Mapped',
+                    data:insert
+                });
+    }
+    catch (error){
+        res.status(400).json({
+            status: 'failed',
+            message:'failed',
+            data:error.message
+        });
+    }
+}
+
+
 const getUserLogin = async (req, res, next) => {
     try{
         const data = req.body;
@@ -351,5 +371,6 @@ module.exports = {
     getVechleMake,
     getVechleModel,
     getVechleType,
-    postVehicleQuote
+    postVehicleQuote,
+    creatMapCustID
 }

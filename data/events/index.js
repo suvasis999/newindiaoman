@@ -287,6 +287,26 @@ const creatVehiclePost = async (appUser) => {
     }
 }
 
+const creatMapCustID = async (appUser) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('events');
+        const insertAppUser = await pool.request()
+                            .input('custID', sql.Int, appUser.custID)
+                            .input('quoteID', sql.Int, appUser.quoteID)
+                            .input('quoteNo', sql.VarChar(50), appUser.quoteNo)
+                            
+                            .query(sqlQueries.mapquotecust);   
+                            
+                           
+
+        return insertAppUser.recordset;
+    } catch (error) {
+        console.log(error);
+        return error.message;
+    }
+}
+
 
 
 module.exports = {
@@ -302,5 +322,6 @@ module.exports = {
     getVehicleMake,
     getVehicleModel,
     getVehicleType,
-    creatVehiclePost
+    creatVehiclePost,
+    creatMapCustID
 }

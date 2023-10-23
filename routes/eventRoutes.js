@@ -20,6 +20,8 @@ router.get('/getVechleMake', eventControll.getVechleMake);
 router.post('/getVechleModel', eventControll.getVechleModel);
 router.get('/getVechleType', eventControll.getVechleType);
 router.post('/postVehicleQuote', eventControll.postVehicleQuote);
+router.post('/creatMapCustID', eventControll.creatMapCustID);
+
 module.exports = {
     routes: router
 }
