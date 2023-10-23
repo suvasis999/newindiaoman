@@ -21,6 +21,8 @@ router.post('/getVechleModel', eventControll.getVechleModel);
 router.get('/getVechleType', eventControll.getVechleType);
 router.post('/postVehicleQuote', eventControll.postVehicleQuote);
 router.post('/creatMapCustID', eventControll.creatMapCustID);
+router.post('/getcustQuoteList',eventControll.getcustQuoteList);
+router.post('/insDrivelistquote',eventControll.insDrivelistquote);
 
 module.exports = {
     routes: router

@@ -189,6 +189,44 @@ const creatMapCustID=async(req, res, next)=>{
     }
 }
 
+const getcustQuoteList=async(req,res, next) =>{
+    try{
+        const data = req.body;
+        const insert = await eventData.getcustQuoteList(data);
+         res.status(200).json({
+                    status: 'success',
+                    message:'Successfully Fetched Data',
+                    data:insert
+                });
+    }
+    catch (error){
+        res.status(400).json({
+            status: 'failed',
+            message:'failed',
+            data:error.message
+        });
+    }
+}
+
+const insDrivelistquote=async(req,res, next) =>{
+    try{
+        const data = req.body;
+        const insert = await eventData.insDrivelistquote(data);
+         res.status(200).json({
+                    status: 'success',
+                    message:'Successfully Data Inserted',
+                    data:insert
+                });
+    }
+    catch (error){
+        res.status(400).json({
+            status: 'failed',
+            message:'failed',
+            data:error.message
+        });
+    }
+}
+
 
 const getUserLogin = async (req, res, next) => {
     try{
@@ -372,5 +410,7 @@ module.exports = {
     getVechleModel,
     getVechleType,
     postVehicleQuote,
-    creatMapCustID
+    creatMapCustID,
+    getcustQuoteList,
+    insDrivelistquote
 }

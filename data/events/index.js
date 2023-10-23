@@ -307,6 +307,43 @@ const creatMapCustID = async (appUser) => {
     }
 }
 
+const getcustQuoteList = async (appUser) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('events');
+        const insertAppUser = await pool.request()
+                            .input('appUserID', sql.Int, appUser.appUserID)
+                            .query(sqlQueries.getUserQuoteDetails);   
+        return insertAppUser.recordset;
+    } catch (error) {
+        console.log(error);
+        return error.message;
+    }
+} 
+
+const insDrivelistquote = async (appUser) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('events');
+        const insertAppUser = await pool.request()
+                            .input('QUOTE_Refno', sql.VarChar(14), appUser.QUOTE_Refno)
+                            .input('pol_no', sql.Char(14), appUser.pol_no)
+                            .input('dname', sql.VarChar(60), appUser.dname)
+                            .input('dage', sql.Char(3), appUser.dage)
+                            .input('dsex', sql.Char(1), appUser.dsex)
+                            .input('drelation', sql.VarChar(60), appUser.drelation)
+                            .input('did', sql.VarChar(30), appUser.did)
+                            .input('USR_ID', sql.VarChar(15), appUser.USR_ID)
+                            .input('IsCancelled', sql.Int, appUser.IsCancelled)
+                            .input('dDOB', sql.DateTime, appUser.dDOB)
+                            .query(sqlQueries.addDrivelistquote);   
+        return insertAppUser.recordset;
+    } catch (error) {
+        console.log(error);
+        return error.message;
+    }
+}
+
 
 
 module.exports = {
@@ -323,5 +360,7 @@ module.exports = {
     getVehicleModel,
     getVehicleType,
     creatVehiclePost,
-    creatMapCustID
+    creatMapCustID,
+    getcustQuoteList,
+    insDrivelistquote
 }
