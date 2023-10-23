@@ -158,7 +158,7 @@ const getVehicleMake = async () => {
     try {
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('events');
-        const vehicleMakeList = await pool.request().query(sqlQueries.vehicleMake);
+        const vehicleMakeList = await pool.request().query(sqlQueries.vehicleMake2);
         return vehicleMakeList.recordset;
     } catch (error) {
         console.log(error.message);
@@ -192,7 +192,8 @@ const getVehicleType = async () => {
 }
 
 
-/*const creatVehiclePost = async (appUser) => {
+const creatVehiclePost = async (appUser) => {
+    console.log('dfjd',appUser);
     try {
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('events');
@@ -221,7 +222,8 @@ const getVehicleType = async () => {
                             .input('PLMANUF', sql.Char(20), appUser.PLMANUF)
 
                             .input('EMPWT', sql.Numeric(18,3), appUser.EMPWT)
-                            .input('LOADWT', sql.Numeric(18,3), appUser.LOADWT)
+                            .input('MFGYEAR', sql.Numeric(18,3), appUser.MFGYEAR)
+                           .input('LOADWT', sql.Numeric(18,3), appUser.LOADWT)
                             .input('TOTWT', sql.Numeric(18,3), appUser.TOTWT)
                             .input('MODEL', sql.Int, appUser.MODEL)
                             .input('SEATS', sql.Int, appUser.SEATS)
@@ -265,8 +267,8 @@ const getVehicleType = async () => {
                             .input('IsFirstReg', sql.Int, appUser.IsFirstReg)
                             .input('IsExportVehicle', sql.Int, appUser.IsExportVehicle)
                             .input('GroupCode', sql.VarChar(15), appUser.GroupCode)
-                            .input('tariffid', sql.Int), appUser.tariffid)
-                    .input('IsBreakIn', sql.Int, appUser.IsBreakIn)
+                            .input('tariffid', sql.Int, appUser.tariffid)
+                            .input('IsBreakIn', sql.Int, appUser.IsBreakIn)
                             .input('off_details', sql.VarChar(50), appUser.off_details)
                             .input('off_Points', sql.Int, appUser.off_Points)
                             .input('vat', sql.Numeric(18,3), appUser.vat)
@@ -275,15 +277,15 @@ const getVehicleType = async () => {
                             .input('eraamt', sql.Numeric(18,3), appUser.eraamt)
                             .input('eracardno', sql.Char(10), appUser.eracardno)
                             
-                            .query(sqlQueries.createVEhicleQuote);   
+                            .query(sqlQueries.createVehicleQuote);   
                             
                            
-
         return insertAppUser.recordset;
     } catch (error) {
+        console.log('error is',error);
         return error.message;
     }
-}*/
+}
 
 
 
@@ -300,5 +302,5 @@ module.exports = {
     getVehicleMake,
     getVehicleModel,
     getVehicleType,
-   // creatVehiclePost
+    creatVehiclePost
 }

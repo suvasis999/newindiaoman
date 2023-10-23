@@ -19,7 +19,7 @@ router.post('/appUserVerified', eventControll.getUserVerified);
 router.get('/getVechleMake', eventControll.getVechleMake);
 router.post('/getVechleModel', eventControll.getVechleModel);
 router.get('/getVechleType', eventControll.getVechleType);
-//router.post('/postVehicleQuote', eventControll.postVehicleQuote);
+router.post('/postVehicleQuote', eventControll.postVehicleQuote);
 module.exports = {
     routes: router
 }

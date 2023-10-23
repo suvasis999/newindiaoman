@@ -155,7 +155,7 @@ const postVehicleQuote=async(req, res, next)=>{
     try{
         const data = req.body;
         const insert = await eventData.creatVehiclePost(data);
-                res.status(200).json({
+         res.status(200).json({
                     status: 'success',
                     message:'Successfully Posted',
                     data:insert
@@ -350,5 +350,6 @@ module.exports = {
     getUserVerified,
     getVechleMake,
     getVechleModel,
-    getVechleType
+    getVechleType,
+    postVehicleQuote
 }

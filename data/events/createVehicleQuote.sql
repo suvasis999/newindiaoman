@@ -1,5 +1,5 @@
 
-INSERT INTO [dbo].[tbl_appUser]
+INSERT INTO [newIndiaOman_dbapp].[dbo].[MTRQuoteSUB]
     (
         [Quote_NO],
         [BIRTH_DT],
@@ -152,5 +152,5 @@ VALUES
 
 
 SELECT *
-  FROM [dbo].[MTRQuoteSUB]
-  WHERE [ROWID]=ROWID
+  FROM [newIndiaOman_dbapp].[dbo].[MTRQuoteSUB]
+  WHERE [ROWID]= SCOPE_IDENTITY();
